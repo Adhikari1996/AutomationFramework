@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" parallel="none">
   <test name="Default test(failed)" parallel="none">
     <classes>
-      <class name="com.crm.qa.testcases.ContactsPageTest">
+      <class name="com.crm.qa.testcases.LoginPageTest">
         <methods>
           <include name="Setup"/>
-          <include name="verifyContactsPageLabel"/>
           <include name="tearDown"/>
+          <include name="logoImageTest"/>
+          <include name="loginTest"/>
         </methods>
-      </class> <!-- com.crm.qa.testcases.ContactsPageTest -->
+      </class> <!-- com.crm.qa.testcases.LoginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

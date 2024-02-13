@@ -7,6 +7,7 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -23,8 +24,10 @@ public class TestBase {
 
 	public static WebDriver driver;
 	public static Properties prop;
-	public  static EventFiringWebDriver e_driver;
+	public static EventFiringWebDriver e_driver;
 	public static WebEventListener eventListener;
+
+	static Logger log = Logger.getLogger(TestBase.class);
 
 	public TestBase() {
 		try {
@@ -40,20 +43,21 @@ public class TestBase {
 	}
 
 	public static void initilization() {
+
 		String browserName = prop.getProperty("browser");
 		if (browserName.contains("Chrome")) {
+			log.info("**************Launching Chrome******************");
 			System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}
-		
-		
+
 		e_driver = new EventFiringWebDriver(driver);
-		// Now create object of EventListerHandler to register it with EventFiringWebDriver
+		// Now create object of EventListerHandler to register it with
+		// EventFiringWebDriver
 		eventListener = new WebEventListener();
 		e_driver.register(eventListener);
 		driver = e_driver;
-		
-		
+
 		driver.get(prop.getProperty("url"));
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
